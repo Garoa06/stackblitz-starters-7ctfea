@@ -1,26 +1,15 @@
 'use client';
 import { useState } from 'react';
 import { FaChevronDown, FaChevronRight, FaClipboard } from 'react-icons/fa';
+import codeData from '../public/codes.json'; // Adjust the path if needed
 
 export default function Home() {
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [selectedCode, setSelectedCode] = useState('');
   const [copied, setCopied] = useState(false);
 
-  const categories = {
-    'Movement Codes': ['Top-down movement', 'Platform movement'],
-    'Collision Codes': ['Basic Collision', 'Advanced Collision'],
-    'Camera Codes': ['Static Camera', 'Dynamic Camera'],
-  };
-
-  const codeSnippets = {
-    'Top-down movement': `// Code for top-down movement\nfunction topDownMovement() {\n  // logic here\n}`,
-    'Platform movement': `// Code for platform movement\nfunction platformMovement() {\n  // logic here\n}`,
-    'Basic Collision': `// Code for basic collision\nfunction basicCollision() {\n  // logic here\n}`,
-    'Advanced Collision': `// Code for advanced collision\nfunction advancedCollision() {\n  // logic here\n}`,
-    'Static Camera': `// Code for static camera\nfunction staticCamera() {\n  // logic here\n}`,
-    'Dynamic Camera': `// Code for dynamic camera\nfunction dynamicCamera() {\n  // logic here\n}`,
-  };
+  // Extract categories and codeSnippets from imported JSON data
+  const { categories, codeSnippets } = codeData;
 
   const handleCopy = () => {
     navigator.clipboard.writeText(codeSnippets[selectedCode]);
